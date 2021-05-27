@@ -1,5 +1,8 @@
+from flask_cors import CORS, cross_origin
 from flask import Flask, send_file
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 from urllib.request import urlopen
 import io
 from PIL import Image
@@ -37,6 +40,7 @@ def searchForSkills(url):
             return dict(zip(extractedLabels, extractedImage))
 
 @app.route('/')
+@cross_origin()
 def hello_world():
     cardList='https://princess-connect.fandom.com/wiki/List_of_Cards'
     with urlopen(cardList) as url:
@@ -47,6 +51,7 @@ def hello_world():
     return 'ligma'
 
 @app.route('/<characterName>/icon')
+@cross_origin()
 def getCharacterIcon(characterName):
     if '(' not in characterName:
         characterName = characterName + ' (Initial)'
@@ -60,6 +65,7 @@ def getCharacterIcon(characterName):
         
 
 @app.route('/<characterName>')
+@cross_origin()
 def getCharacterFullArt(characterName):
     if '(' not in characterName:
         characterName = characterName + ' (Initial)'
@@ -77,6 +83,7 @@ def getCharacterFullArt(characterName):
                 return returnImageArt(extractedImage)
 
 @app.route('/<characterName>/<skill>')
+@cross_origin()
 def getCharacterSkill(characterName, skill):
     if '(' not in characterName:
         characterName = characterName + ' (Initial)'
