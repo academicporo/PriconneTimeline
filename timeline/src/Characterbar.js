@@ -8,13 +8,13 @@ class Characterbar extends React.Component {
         var timing3=element['skill3']['timings'].length
         var skillbar=[]
         if(timing1>0){
-            skillbar.push(<Skillbar skill={element['skill1']} key={element['skill1']['name']}></Skillbar>)
+            skillbar.push(<Skillbar skill={element['skill1']} key={element['skill1']['name']} characterName={element['name']} type={1}></Skillbar>)
         }
         if(timing2>0){
-            skillbar.push(<Skillbar skill={element['skill2']} key={element['skill2']['name']}></Skillbar>)
+            skillbar.push(<Skillbar skill={element['skill2']} key={element['skill2']['name']} characterName={element['name']} type={2}></Skillbar>)
         }
         if(timing3>0){
-            skillbar.push(<Skillbar skill={element['skill3']} key={element['skill3']['name']}></Skillbar>)
+            skillbar.push(<Skillbar skill={element['skill3']} key={element['skill3']['name']} characterName={element['name']} type={'UB'}></Skillbar>)
         }
         return skillbar
     }

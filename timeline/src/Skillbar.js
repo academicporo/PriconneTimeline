@@ -9,14 +9,22 @@ class Skillbar extends React.Component {
             const element = skillTimings[index];
             durations.push(<Duration info={element} 
                                         key={element['start']+element['duration'].toString()}
-                                        name={skill['name']}></Duration>)
+                                        name={skill['name']} characterName={this.props.characterName} type={this.props.type}></Duration>)
         }
         return durations
     }
+    getCharacterIcon(){
+        var baseurl='https://priconneimageapi.herokuapp.com/'+this.props.characterName+'/'+'icon'
+        return baseurl
+    }
     render(){ 
         let list=this.constructDurations()
+        console.log(this.getCharacterIcon())
         return(
-            <div className="Skillbar">{list}</div>
+            <div className="Skillbar">
+                <img src={this.getCharacterIcon()} alt='Character Icon'></img>
+                {list}
+            </div>
         );
     }
 }

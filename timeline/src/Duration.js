@@ -15,12 +15,29 @@ class Duration extends React.Component {
             return '0:'+input.toString()
         }
     }
-    render(){ 
+    getIcon(){
+        var baseurl='https://priconneimageapi.herokuapp.com/'+this.props.characterName+'/'
+        if(this.props.type==1){
+            baseurl+='Skill 1'
+        }
+        if(this.props.type==2){
+            baseurl+='Skill 2'
+        }
+        if(this.props.type=='UB'){
+            baseurl+='Union Burst'
+        }
+        return baseurl
+    }
+    render(){
+        console.log(this.getIcon()) 
         return(
             <div className="Duration" style={{width: (this.props.info['duration']/90*100).toString()+'%',
                                             left: (100-this.props.info['start']/90*100).toString()+'%'}}>
                                                 <p>{this.secondsToTimestamp(this.props.info['start'])}</p>
-                                                <p>{this.props.name}</p>
+                                                <div className='Durationlabel'>
+                                                    <img src={this.getIcon()} alt="icon" height='20px'></img>
+                                                    <p>{this.props.name}</p>
+                                                </div>
                                                 <p>{this.secondsToTimestamp(this.props.info['start']-this.props.info['duration'])}</p>
                                             </div>
         );
