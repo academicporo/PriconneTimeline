@@ -23,6 +23,14 @@ def returnImageArt(url):
         image = Image.open(imageBytes)
         return serve_pil_image(image)
 
+def returnIconArt(url):
+    with urlopen(url) as url:
+        imageBytes = io.BytesIO(url.read())
+        image = Image.open(imageBytes)
+        width, height = image.size
+        image = image.crop((0,1,width-3,height))
+        return serve_pil_image(image)
+
 def searchForFullArt(url):
     with urlopen(url) as url:
         uncleanImageList = re.findall('<a href=".*FullArt.*" class="image"><img alt="FullArt', url.read().decode('utf8'))
@@ -61,7 +69,7 @@ def getCharacterIcon(characterName):
         for character in extractedCharacters:
             if characterName in character:
                 extractedIcon = re.findall('<a href=".*" class="image"', character)[0][9:-15]
-                return returnImageArt(extractedIcon)
+                return returnIconArt(extractedIcon)
         
 
 @app.route('/<characterName>')
