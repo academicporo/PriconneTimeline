@@ -52,10 +52,25 @@
   background-color:skyblue;
   position: relative;
 }
-.Skills{
+.Leftbar{
   height: 100%;
   width: 15%;
   background-color: #ffd0d1;
+}
+.Leftbar > img{
+  height: 18.6%
+}
+.Logobar{
+  height: 7%;
+  display: flex;
+  align-items: center;
+}
+.Logobar > img{
+  height: 100%
+}
+.Logobar > p{
+  font-size: 20px;
+  margin-left: 2px
 }
 .Timeline{
   height: 100%;

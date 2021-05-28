@@ -22,7 +22,7 @@ class Skillbar extends React.Component {
         console.log(this.getCharacterIcon())
         return(
             <div className="Skillbar">
-                <img src={this.getCharacterIcon()} alt='Character Icon'></img>
+                <img src={this.getCharacterIcon()} alt='Character Icon' width='40px'></img>
                 {list}
             </div>
         );
